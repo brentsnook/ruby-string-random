@@ -188,7 +188,7 @@ class StringRandom
       if @regch.has_key?(ch)
         @regch[ch].call(ch, chars, string)
       else
-        warn "'#{ch}' not implemented. treating literally." if ch =~ non_ch
+        # warn "'#{ch}' not implemented. treating literally." if ch =~ non_ch
         string << [ch]
       end
     end
@@ -226,12 +226,12 @@ class StringRandom
       tmp = chars.shift + chars.shift
       string << tmp.hex.chr
     elsif tmp =~ /[0-7]/
-      warn 'octal parsing not implemented. treating literally.'
+      # warn 'octal parsing not implemented. treating literally.'
       string << tmp
     elsif Pattern.has_key?(ch + tmp)
       string << Pattern[ch + tmp]
     else
-      warn "'\\#{tmp}' being treated as literal '#{tmp}'"
+      # warn "'\\#{tmp}' being treated as literal '#{tmp}'"
       string << tmp
     end
   end
@@ -249,7 +249,7 @@ class StringRandom
         min  = tmp.last
         tmp << min = min.succ while min < max
       else
-        warn "${ch}' will be treated literally inside []" if ch =~ /\W/
+        # warn "${ch}' will be treated literally inside []" if ch =~ /\W/
         tmp << ch
       end
     end
